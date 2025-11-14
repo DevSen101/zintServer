@@ -59,7 +59,7 @@ app.get('/api/health', (req, res) => {
 
 // Global error handler (optional but recommended)
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+    console.error(err.stack);
   res.status(err.statusCode || 500).json({
     success: false,
     message: err.message || 'Server Error'
