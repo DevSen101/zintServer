@@ -1,0 +1,13 @@
+{
+  "IT Categories": {
+    "icon": "Terminal",
+    "Full Stack Developer": {
+      "courses": [],
+      "icon": "Code"
+    },
+    "DOT NET Developer": {
+      "courses": [],
+      "icon": "Code"
+    }
+  }
+}
