@@ -71,3 +71,5 @@ app.listen(PORT, () => {
   console.log(`✅ Auth endpoints: http://localhost:${PORT}/api/auth/register`);
   console.log(`✅ Auth endpoints: http://localhost:${PORT}/api/auth/login`);
 });
+
+
