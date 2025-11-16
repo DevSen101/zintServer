@@ -9,17 +9,20 @@ const {
 } = require('../controllers/teacherController.js');
 
 const router = express.Router();
- 
-router.route('/')
-  .get(getTeachers)
-  .post(createTeacher);
 
-router.route('/:id')
-  .get(getTeacherById)
-  .put(updateTeacher)
-  .delete(deleteTeacher) 
-
+// Route for distinct departments should come first
 router.route('/department')
-  .get(departmentDetails)
+.get(departmentDetails);
 
-module.exports = router; 
+// Routes for collection
+router.route('/')
+.get(getTeachers)
+.post(createTeacher);
+
+// Routes for specific teacher by ID
+router.route('/:id')
+.get(getTeacherById)
+.put(updateTeacher)
+.delete(deleteTeacher);
+
+module.exports = router;

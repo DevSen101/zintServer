@@ -9,8 +9,7 @@ const getTeachers = asyncHandler(async (req, res) => {
 const getTeacherById = asyncHandler(async (req, res) => {
   const teacher = await Teacher.findById(req.params.id).select('-__v');
   if (!teacher) {
-    res.status(404);
-    throw new Error('Teacher not found');
+    return res.status(404).json({ message: 'Teacher not found' }); // return JSON instead of throw
   }
   res.status(200).json(teacher);
 });
@@ -31,14 +30,11 @@ const createTeacher = asyncHandler(async (req, res) => {
     socialLinks,
   } = req.body;
 
-  console.log("coursesTaught",coursesTaught);
-
   // Check if email already exists
   const existingTeacher = await Teacher.findOne({ email });
   
   if (existingTeacher) {
-    res.status(400);
-    throw new Error('Teacher with this email already exists');
+    return res.status(400).json({ message: 'Teacher with this email already exists' }); // return JSON
   }
 
   const teacher = await Teacher.create({
@@ -62,8 +58,7 @@ const createTeacher = asyncHandler(async (req, res) => {
 const updateTeacher = asyncHandler(async (req, res) => {
   const teacher = await Teacher.findById(req.params.id);
   if (!teacher) {
-    res.status(404);
-    throw new Error('Teacher not found');
+    return res.status(404).json({ message: 'Teacher not found' }); // return JSON
   }
 
   // Prevent duplicate email (unless it's the same teacher)
@@ -72,8 +67,7 @@ const updateTeacher = asyncHandler(async (req, res) => {
     _id: { $ne: req.params.id },
   });
   if (emailExists) {
-    res.status(400);
-    throw new Error('Another teacher already uses this email');
+    return res.status(400).json({ message: 'Another teacher already uses this email' }); // return JSON
   }
 
   Object.assign(teacher, req.body);
@@ -85,8 +79,7 @@ const updateTeacher = asyncHandler(async (req, res) => {
 const deleteTeacher = asyncHandler(async (req, res) => {
   const teacher = await Teacher.findById(req.params.id);
   if (!teacher) {
-    res.status(404);
-    throw new Error('Teacher not found');
+    return res.status(404).json({ message: 'Teacher not found' }); // return JSON
   }
 
   await teacher.deleteOne();
@@ -94,8 +87,8 @@ const deleteTeacher = asyncHandler(async (req, res) => {
 });
 
 const departmentDetails = asyncHandler(async (req, res) => {
-   const department = await Teacher.distinct('department');
-   res.status(200).json(department);
+  const departments = await Teacher.distinct('department');
+  res.status(200).json(departments || []); // return empty array if none
 });   
 
 module.exports = {
