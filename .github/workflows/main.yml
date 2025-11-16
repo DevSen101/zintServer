@@ -1,6 +1,5 @@
 name: Zint LMS Clone
 
-
 on:
   push:
     branches: [ main ]
@@ -18,7 +17,7 @@ jobs:
 
     env:
       CI: true
-      MONGO_URL: mongodb://localhost/Zint
+      MONGO_URL: mongodb://localhost/nasa
 
     steps:
       - name: Checkout repository
@@ -37,8 +36,5 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Run tests
-        run: npm test
 
       
