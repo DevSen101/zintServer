@@ -16,6 +16,7 @@ const dashboardCourseRoutes = require('./routes/dashboardCourseRoutes');
 const studentReviewRoutes = require('./routes/studentReviewRoutes');
 const blogsRouter = require('./routes/blogs');
 const workshopsRouter = require('./routes/workshops');
+const eventsRouter = require('./routes/events');
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.use('/api/dashboard-courses', dashboardCourseRoutes);
 app.use('/api/student-reviews', studentReviewRoutes);
 app.use('/api/blogs', blogsRouter);
 app.use('/api/workshops', workshopsRouter);
+app.use('/api/events', eventsRouter);
 
 // Health check route
 app.get('/api/health', (req, res) => {
