@@ -24,3 +24,8 @@ router.put('/:id', updateEvent); // PUT /api/events/507f1f77bcf86cd799439011
 router.delete('/:id', deleteEvent); // DELETE /api/events/507f1f77bcf86cd799439011
 
 module.exports = router;
+
+
+
+
+
